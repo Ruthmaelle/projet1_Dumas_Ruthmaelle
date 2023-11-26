@@ -3,9 +3,9 @@
 <!-- 
     Formulaire permettant d'enregistrer un nouvel utilisateur
  -->
-<form method="post" action="">
+<form method="post" action="../results/signupResult.php">
     <input hidden name="action" value="signup">
-    
+
     <label for="lname">Nom</label>
     <input id="lname" name="lname" type="text">
     <label for="fname">Prenom</label>
