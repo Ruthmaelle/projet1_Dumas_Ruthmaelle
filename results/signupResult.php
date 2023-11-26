@@ -10,6 +10,7 @@ if(isset($_POST)) {
     unset($_SESSION['signup_errors']);
 
     $validation = true;
+
     //validate first name 
     if(isset($_POST['user_name'])) {
         $fnameIsValidData = fnameIsValid($_POST['fname']);
@@ -52,9 +53,29 @@ if(isset($_POST)) {
 
         if($pwdIsValidData['isValid'] == false) {
             $validation = false;
+            echo($pwdIsValidData['msg']);
         }
     }
 
+    if($validation == true) {
+        //envoyer vers la DB
+
+
+    } else {
+        $_SESSION['signup_errors'] = [
+            'fname' => $fnameIsValidData['msg'],
+            'lname' => $lnameIsValidData['msg'],
+            'user_name' => $unameIsValidData['msg'],
+            'email' => $emailIsValidData['msg'],
+            'pwd' => $pwdIsValidData['msg']
+        ];
+
+        $url = "../Authentification/signUp.php";
+        header('Location: ' . $url);
+    }
+} else {
+    $url = "../Authentification/signUp.php";
+    header('Location: ' . $url);
 }
 
 
