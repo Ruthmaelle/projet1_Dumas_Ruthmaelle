@@ -47,7 +47,7 @@ if (isset($_SESSION['signup_form']['pwd'])) {
     <input id="email" name="email" type="email"> <br> <br>
     
     <label for="pwd">Mot de passe</label>
-    <input id="pwd" type="text" name="pwd" value="<?php echo $pwd ?>">
+    <input id="pwd" type="password" name="pwd" value="<?php echo $pwd ?>">
     <p style="color: red; font-size: 0.8rem;"><?php echo isset($_SESSION['signup_errors']['pwd'])? $_SESSION['signup_errors']['pwd'] : '' ?></p>
     
     <button type="submit">Sign Up</button>
