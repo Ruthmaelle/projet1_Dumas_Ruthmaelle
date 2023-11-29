@@ -3,7 +3,7 @@
 function usernameIsValid(string $user_name): array
 {
     $length = strlen($user_name);
-    $result = [
+    $responses = [
         'isValid' => true,
         'msg' => ''
 
@@ -12,31 +12,31 @@ function usernameIsValid(string $user_name): array
     $userInDB = getUserByUsername($user_name);
 
     if ($length < 2) {
-        $result = [
+        $responses = [
             'isValid' => false,
             'msg' => 'Le username utilisé est trop court'
 
         ];
     } elseif ($length > 20) {
-        $result = [
+        $responses = [
             'isValid' => false,
             'msg' => 'Le username utilisé est trop long'
 
         ];
     } elseif ($length = 0) {
-        $result = [
+        $responses = [
             'isValid' => false,
             'msg' => 'Veuillez saisir un Username'
 
         ];
     }
     elseif ($userInDB) {
-        $result = [
+        $responses = [
             'isValid' => false,
             'msg' => 'Le username est déjà utilisé'
         ];
     }
-    return $result;
+return $responses;
 }
 
 
@@ -64,10 +64,8 @@ function fnameIsValid($fname) {
             'msg' => 'Case Prenom est non rempli'
         ];
     }
-    return $responses;
-    return $valeur;
-
-
+return $responses;
+//return $valeur;
 }
 
 function lnameIsValid($lname) {
@@ -93,24 +91,25 @@ function lnameIsValid($lname) {
             'msg' => 'Case Nom est non rempli'
         ];
     }
-    return $responses;
-    return $valeur;
+return $responses;
+return $valeur;
 }
 
 function emailIsValid($email)
 {
+    $responses = [
+        'isValid' => true,
+        'msg' => '',
+    ];
 
     $email_validation_regex = "/^[a-z0-9!#$%&'*+\\/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+\\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/";
     if (!preg_match($email_validation_regex, $email)) {
-        return [
+        $responses = [
             'isValid' => false,
             'msg' => "Format d'email invalid",
         ];
     }
-    return [
-        'isValid' => true,
-        'msg' => '',
-    ];
+return $responses;
 }
 
 
@@ -118,24 +117,26 @@ function pwdLenghtValidation($pwd)
 {
     //minimum 6 max 16
     $length = strlen($pwd);
-    return [
+    $responses= [
         'isValid' => true,
         'msg' => ''
     ];
 
     if ($length < 6) {
-        return [
+        $responses = [
             'isValid' => false,
-            'msg' => 'Votre mot de passe est trop court. Doit être supérieur a 8 caractères'
+            'msg' => 'Votre mot de passe est trop court. Doit être supérieur a 6 caractères'
         ];
     } elseif ($length > 16) {
-        return [
+        $responses = [
             'isValid' => false,
             'msg' => 'Votre mot de passe est trop long. Doit être inférieur a 16 caractères'
         ];
     }
-
+return $responses;
 }
+
+
 
 //TODO: faire une class css: error qui  met les messages d'erreurs en rouges
 

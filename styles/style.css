@@ -1,0 +1,17 @@
+.new {
+  width: 350px; /* largeur*/
+  margin: auto; /* bloc centré */
+  border: 3px solid black;
+  text-align: justify;
+  padding: 75px;
+  margin-bottom: 25px;
+}
+
+.button {
+  text-align: justify;
+  background-color: chartreuse;
+}
+
+.out {
+  margin-right: 0cqmax;
+}

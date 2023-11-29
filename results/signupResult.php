@@ -7,22 +7,29 @@ session_start();
 if(isset($_POST)) {
     $_SESSION['signup_form'] = $_POST;
 
-    unset($_SESSION['signup_errors']);
+    $lname = $_POST['lname'];
+    $fname = $_POST['fname'];
+    $user = $_POST['user_name'];
+    $mdp = $_POST['pwd'];
+    $mail = $_POST['email'];
+
+    //unset($_SESSION['signup_errors']);
 
     $validation = true;
 
     //validate first name 
-    if(isset($_POST['user_name'])) {
-        $fnameIsValidData = fnameIsValid($_POST['fname']);
+    if(isset($user)) {
+        $fnameIsValidData = fnameIsValid($fname);
 
         if($fnameIsValidData['isValid'] == false) {
             $validation = false;
+            echo($fnameIsValidData['msg']);
         }
     }
 
     //validate last name
-    if(isset($_POST['user_name'])) {
-        $lnameIsValidData = lnameIsValid($_POST['lname']);
+    if(isset($user)) {
+        $lnameIsValidData = lnameIsValid($lname);
         
         if($lnameIsValidData['isValid'] == false) {
             $validation = false;
@@ -30,8 +37,8 @@ if(isset($_POST)) {
     }
 
     //validate username 
-    if(isset($_POST['user_name'])) {
-        $unameIsValidData = usernameIsValid($_POST['user_name']);
+    if(isset($user)) {
+        $unameIsValidData = usernameIsValid($user);
 
         if($unameIsValidData['isValid'] == false) {
             $validation = false;
@@ -39,8 +46,8 @@ if(isset($_POST)) {
     }
 
     //validate email 
-    if(isset($_POST['user_name'])) {
-        $emailIsValidData = emailIsValid($_POST['email']);
+    if(isset($user)) {
+        $emailIsValidData = emailIsValid($mail);
 
         if($emailIsValidData['isValid'] == false) {
             $validation = false;
@@ -48,8 +55,8 @@ if(isset($_POST)) {
     }
 
     //validate mdp 
-    if(isset($_POST['user_name'])) {
-        $pwdIsValidData = pwdLenghtValidation($_POST['pwd']);
+    if(isset($user)) {
+        $pwdIsValidData = pwdLenghtValidation($mdp);
 
         if($pwdIsValidData['isValid'] == false) {
             $validation = false;
@@ -62,6 +69,7 @@ if(isset($_POST)) {
 
 
     } else {
+
         $_SESSION['signup_errors'] = [
             'fname' => $fnameIsValidData['msg'],
             'lname' => $lnameIsValidData['msg'],
