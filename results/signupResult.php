@@ -2,6 +2,7 @@
 require_once("../Configuration/connexion.php");
 require_once("../functions/validation.php");
 require_once("../functions/userCrud.php");
+require_once("../functions/functions.php");
 session_start();
 
 if(isset($_POST)) {
@@ -33,6 +34,7 @@ if(isset($_POST)) {
         
         if($lnameIsValidData['isValid'] == false) {
             $validation = false;
+            echo($lnameIsValidData['msg']);
         }
     }
 
@@ -42,6 +44,7 @@ if(isset($_POST)) {
 
         if($unameIsValidData['isValid'] == false) {
             $validation = false;
+            echo($unameIsValidData['msg']);
         }
     }
 
@@ -51,6 +54,7 @@ if(isset($_POST)) {
 
         if($emailIsValidData['isValid'] == false) {
             $validation = false;
+            echo($emailIsValidData['msg']);
         }
     }
 
@@ -66,7 +70,19 @@ if(isset($_POST)) {
 
     if($validation == true) {
         //envoyer vers la DB
+        //saltedcode
+        $saltCode = addSalt($mdp);
 
+        $data = [
+            'user_name' => $user,
+            'email' => $mail,
+            'pwd' => $saltCode,
+            'fname' => $fname,
+            'lname' => $lname
+        ];
+        //pour envoyer vers la DB 
+        $newUser = createUser($data);
+        $_POST ($pwd);
 
     } else {
 

@@ -4,7 +4,7 @@ require_once("../Configuration/connexion.php");
 function createUser(array $data) {
     global $conn;
     
-    $query = "INSERT INTO user VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO user VALUES (NULL, ?, ?, ?, ?, ?)";
     if ($stmt =mysqli_prepare($conn, $query)) {
         mysqli_stmt_bind_param(
             $stmt,
@@ -14,10 +14,6 @@ function createUser(array $data) {
             $data['pwd'],
             $data['fname'],
             $data['lname'],
-            $data['billing_address_id'],
-            $data['shipping_address_id'],
-            $data['token'],
-            $data['role_id']
         );
 
         $result = mysqli_stmt_execute($stmt);

@@ -13,5 +13,7 @@
 }
 
 .out {
-  margin-right: 0cqmax;
+  margin-left: auto;
+  background-color: red;
+  float: right;
 }

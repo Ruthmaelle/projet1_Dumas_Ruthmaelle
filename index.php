@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./styles/style.css"/>
 </head>
 <body>
+    <button type="button" class="out">Deconnexion</button>
     <center><h1>Bienvenue sur notre site ...</h1></center>
     <form action="" method="post" cla>
         <center><label for="user">Nom d'utilisateur: </label></center> <br>
@@ -15,7 +16,7 @@
         <center><input type="text" name="password" id="New"></center> <br>
         <center><button type="button" class="button"><a href="./Authentification/signUp.php">SignUp</a></button>
         <button type="button" class="button"><a href="./Authentification/login.php">Login</a></button></center>
-        <button type="button" class="out">Deconnexion</button>
+       
     </form>
 </form>
 </body>
