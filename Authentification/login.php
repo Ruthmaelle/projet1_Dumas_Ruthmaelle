@@ -8,15 +8,14 @@
 <body>
     <h2>Login</h2>
 
-    <!--a href="../index.php">Retour Accueil</a></br>-->
-
-    <form method="post" action="">
+    <form method="post" action="../results/loginReults.php">
     <input hidden name="action" value="login">
 
     <label for="username">Nom d'utilisateur</label>
         <input id="username" name="username" type="text"> <br><br>
         <label for="pwd">Mot de passe</label>
         <input id="pwd" name="pwd" type="password">
+        <button type="submit">connexion</button>
     </form>
 </body>
 </html>

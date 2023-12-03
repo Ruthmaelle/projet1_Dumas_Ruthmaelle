@@ -1,3 +1,7 @@
+body {
+  background-image: url("C:\Users\User\Pictures\OIP.jpeg");
+}
+
 .new {
   width: 350px; /* largeur*/
   margin: auto; /* bloc centré */

@@ -13,6 +13,7 @@ if(isset($_POST)) {
     $user = $_POST['user_name'];
     $mdp = $_POST['pwd'];
     $mail = $_POST['email'];
+    $token = hash('sha256', random_bytes(32));
 
     //unset($_SESSION['signup_errors']);
 
@@ -78,11 +79,15 @@ if(isset($_POST)) {
             'email' => $mail,
             'pwd' => $saltCode,
             'fname' => $fname,
-            'lname' => $lname
+            'lname' => $lname,
+            'billing_address_id' => 0,
+            'shipping_address_id' => 0,
+            'token' => $token,
+            'role_id' => '3'
         ];
         //pour envoyer vers la DB 
         $newUser = createUser($data);
-        $_POST ($pwd);
+        echo($saltCode);
 
     } else {
 
