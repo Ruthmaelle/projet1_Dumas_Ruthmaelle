@@ -7,13 +7,10 @@
     <link rel="stylesheet" href="./styles/style.css"/>
 </head>
 <body>
-    <button type="button" class="out">Deconnexion</button>
+    <button type="button" class="out"><a href="./results/deconnect.php">Deconnexion</a></button>
     <center><h1>Bienvenue sur notre site ...</h1></center>
-    <form action="" method="post" cla>
-        <center><label for="user">Nom d'utilisateur: </label></center> <br>
-        <center><input type="text" name="user" id="New"></center><br>
-        <center><label for="password">Mot de passe: </label></center>
-        <center><input type="text" name="password" id="New"></center> <br>
+    <form action="" method="post">
+        <p>Bienvenue sur notre site de commerce</p>
         <center><button type="button" class="button"><a href="./Authentification/signUp.php">SignUp</a></button>
         <button type="button" class="button"><a href="./Authentification/login.php">Login</a></button></center>
        

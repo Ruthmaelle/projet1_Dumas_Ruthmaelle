@@ -32,6 +32,15 @@ function getUserByUsername(string $user_name) {
 
     $data= mysqli_fetch_assoc(($result));
     return $data;
-    
 }
+
+/*function getUserByMail(string $email){
+    global $conn;
+
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE email = " . $email);
+    $data = mysqli_fetch_assoc($result);
+
+    return $data;
+}
+*/
 ?>

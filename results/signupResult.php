@@ -16,7 +16,6 @@ if(isset($_POST)) {
     $token = hash('sha256', random_bytes(32));
 
     //unset($_SESSION['signup_errors']);
-
     $validation = true;
 
     //validate first name 
@@ -88,6 +87,8 @@ if(isset($_POST)) {
         //pour envoyer vers la DB 
         $newUser = createUser($data);
         echo($saltCode);
+        echo("Bienvenue " . $user);
+
 
     } else {
 
@@ -98,7 +99,6 @@ if(isset($_POST)) {
             'email' => $emailIsValidData['msg'],
             'pwd' => $pwdIsValidData['msg']
         ];
-
         $url = "../Authentification/signUp.php";
         header('Location: ' . $url);
     }

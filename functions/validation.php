@@ -1,5 +1,6 @@
 <?php
 
+
 function usernameIsValid(string $user_name): array
 {
     $length = strlen($user_name);
@@ -85,14 +86,13 @@ function lnameIsValid($lname) {
             'isValid' =>false,
             'msg' => 'Nom trop court'
         ];
-    } elseif ($length =0) {
+    } elseif ($length == 0) {
         $responses=[
             'isValid' => false,
             'msg' => 'Case Nom est non rempli'
         ];
     }
 return $responses;
-return $valeur;
 }
 
 function emailIsValid($email)
@@ -102,13 +102,20 @@ function emailIsValid($email)
         'msg' => '',
     ];
 
+    //$emailInDB = getUserByMail($email);
+
     $email_validation_regex = "/^[a-z0-9!#$%&'*+\\/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+\\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/";
     if (!preg_match($email_validation_regex, $email)) {
         $responses = [
             'isValid' => false,
             'msg' => "Format d'email invalid",
         ];
-    }
+    } /*elseif ($emailInDB) {
+        $responses = [
+            'isValid' => false,
+            'msg' => 'Adresse Email déjà utilisé'
+        ];
+    }*/
 return $responses;
 }
 

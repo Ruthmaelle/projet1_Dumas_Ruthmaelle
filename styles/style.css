@@ -1,5 +1,7 @@
 body {
-  background-image: url("C:\Users\User\Pictures\OIP.jpeg");
+  background-image: url("./R.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .new {
