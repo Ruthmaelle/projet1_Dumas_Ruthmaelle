@@ -15,7 +15,8 @@ if(isset($_POST)) {
     $mail = $_POST['email'];
     $token = hash('sha256', random_bytes(32));
 
-    //unset($_SESSION['signup_errors']);
+    unset($_SESSION['signup_errors']);
+    
     $validation = true;
 
     //validate first name 
@@ -86,8 +87,8 @@ if(isset($_POST)) {
         ];
         //pour envoyer vers la DB 
         $newUser = createUser($data);
-        echo($saltCode);
-        echo("Bienvenue " . $user);
+        //echo($saltCode);
+        echo("<br> <br> Bienvenue " . $user);
 
 
     } else {
@@ -101,6 +102,7 @@ if(isset($_POST)) {
         ];
         $url = "../Authentification/signUp.php";
         header('Location: ' . $url);
+
     }
 } else {
     $url = "../Authentification/signUp.php";
