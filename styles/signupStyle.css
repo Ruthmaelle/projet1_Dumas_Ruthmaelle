@@ -1,0 +1,11 @@
+.out {
+  margin-left: auto;
+  background-color: red;
+  float: right;
+}
+
+body {
+  background-image: url("./sign-up.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+}

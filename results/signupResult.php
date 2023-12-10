@@ -7,6 +7,8 @@ session_start();
 
 if(isset($_POST)) {
     $_SESSION['signup_form'] = $_POST;
+    
+    unset($_SESSION['signup_errors']);
 
     $lname = $_POST['lname'];
     $fname = $_POST['fname'];
@@ -15,8 +17,7 @@ if(isset($_POST)) {
     $mail = $_POST['email'];
     $token = hash('sha256', random_bytes(32));
 
-    unset($_SESSION['signup_errors']);
-    
+
     $validation = true;
 
     //validate first name 
