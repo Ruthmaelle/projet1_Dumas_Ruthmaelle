@@ -21,4 +21,5 @@ body {
   margin-left: auto;
   background-color: red;
   float: right;
+  text-align: justify;
 }

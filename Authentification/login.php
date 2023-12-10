@@ -8,7 +8,6 @@
 </head>
 <body>
     <h2>Login</h2>
-    <button type="button" class="out"><a href="../results/deconnect.php">Deconnexion</a></button>
     <form method="post" action="../results/loginResults.php">
     <input hidden name="action" value="login">
 
@@ -22,5 +21,6 @@
 
         <button type="submit">connexion</button>
     </form>
+    <button type="button" class="out"><a href="../results/deconnect.php">Deconnexion</a></button>
 </body>
 </html>
