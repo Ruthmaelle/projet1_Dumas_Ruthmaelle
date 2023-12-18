@@ -23,3 +23,10 @@ body {
   float: right;
   text-align: justify;
 }
+
+.Edit {
+  margin-left: auto;
+  float: right;
+  text-align: justify;
+  background-color: blue;
+}

@@ -4,6 +4,10 @@ require_once("../functions/userCrud.php");
 require_once("../functions/functions.php");
 session_start();
 
+if ($_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die("CSRF token validation failed.");
+}
+
 var_dump($_POST);
 
 
@@ -11,11 +15,10 @@ var_dump($_POST);
 
 if (isset($_POST)) {
 
-    //$userData = getUserByUsername($_POST['username']);
 
     // recupere le username et password dans le formulaire
-    $username = !empty($_POST['user_name'])? $_POST["user_name"] : NULL; //? mysqli_real_escape_string($conn, $_POST['user_name']) : null;
-    $password = !empty($_POST['pwd'])? $_POST["pwd"] : NULL; //? $_POST['pwd'] : null;
+    $username = !empty($_POST['user_name'])? $_POST["user_name"] : NULL; 
+    $password = !empty($_POST['pwd'])? $_POST["pwd"] : NULL;
 
     unset($_SESSION['login_error']);
     //valider si le username et password sont present
@@ -39,9 +42,15 @@ if (isset($_POST)) {
         $url = "../Authentification/login.php";
         header('Location: ' . $url);
         exit();
-    } else { //si le nom existe 
+    } else { //si le nom existe
+        //enregistre le username dans la DB pour les futurs modifications 
+        $_SESSION['user_name'] = $userData['user_name'];
+
         // encodage
+        echo("<br> <br> Bienvenue " . $userData);
         $encodedPWD = addSalt($password);
+        //enregistre le pwd dans la DB pour les futurs modifications 
+        $_SESSION['pwd'] = $password;
 
         // comparer avec celui dans la DB
         if ($userData['pwd'] == $encodedPWD) {
@@ -57,7 +66,7 @@ if (isset($_POST)) {
                 if (mysqli_stmt_execute($stmt)){
                 echo("succes");
                 // Redirect to the main page
-                header('Location: ..//pages/ecom.php'); //not there yet
+                header('Location: ../pages/ecom.php'); //not there yet
                 exit();
             } else{
                 $_SESSION['login_error'] = ("Erreurs dans l'execution: " . mysqli_error($conn));

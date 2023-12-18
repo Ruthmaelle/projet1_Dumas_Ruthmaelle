@@ -37,11 +37,13 @@ if (isset($_SESSION['signup_form']['pwd'])) {
 <body>
 
 <h2>Sign Up</h2>
-<button type="button" class="out"><a href="../results/deconnect.php">Deconnexion</a></button>
 <!--
     Formulaire permettant d'enregistrer un nouvel utilisateur
 -->
 <form  method="post" action="../results/signupResult.php" id="sign">
+    <!-- Add CSRF Token -->
+    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
     <input hidden name="action" value="signup">
 
     <div class ="row">

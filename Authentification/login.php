@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +14,10 @@
 </head>
 <body>
     <center><h2>Login</h2></center>
-    <button type="button" class="out"><a href="../results/deconnect.php">Deconnexion</a></button>
     <form method="post" action="../results/loginResults.php">
+        <!-- Add CSRF Token -->
+    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
     <input hidden name="action" value="login">
 
     <div class ="row">

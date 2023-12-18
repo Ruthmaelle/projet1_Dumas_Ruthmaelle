@@ -7,7 +7,7 @@ session_start();
 
 if(isset($_POST)) {
     $_SESSION['signup_form'] = $_POST;
-    
+
     unset($_SESSION['signup_errors']);
 
     $lname = $_POST['lname'];
@@ -88,8 +88,9 @@ if(isset($_POST)) {
         ];
         //pour envoyer vers la DB 
         $newUser = createUser($data);
-        //echo($saltCode);
         echo("<br> <br> Bienvenue " . $user);
+        header('Location: ../pages/ecom.php'); 
+        exit();
 
 
     } else {

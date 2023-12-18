@@ -11,3 +11,4 @@ TODO:
 - clean all the comments
 - ajouter bootstrap (poum fl tankou app transactionnelles) //IN PROGRESS
 - faire la deconnexion //IN PROGRESS
+- add a searchbar (optional)

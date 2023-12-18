@@ -34,7 +34,7 @@ function usernameIsValid(string $user_name): array
     elseif ($userInDB) {
         $responses = [
             'isValid' => false,
-            'msg' => 'Le username est déjà utilisé'
+            'msg' => 'Le username est déjà utilisé / Username existe deja'
         ];
     }
 return $responses;
@@ -102,7 +102,7 @@ function emailIsValid($email)
         'msg' => '',
     ];
 
-    //$emailInDB = getUserByMail($email);
+    $emailInDB = getUserByMail($email);
 
     $email_validation_regex = "/^[a-z0-9!#$%&'*+\\/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+\\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/";
     if (!preg_match($email_validation_regex, $email)) {
@@ -110,12 +110,12 @@ function emailIsValid($email)
             'isValid' => false,
             'msg' => "Format d'email invalid",
         ];
-    } /*elseif ($emailInDB) {
+    } elseif ($emailInDB) {
         $responses = [
             'isValid' => false,
-            'msg' => 'Adresse Email déjà utilisé'
+            'msg' => 'Adresse Email déjà utilisé et ne peut etre dupliquer'
         ];
-    }*/
+    }
 return $responses;
 }
 
@@ -143,8 +143,23 @@ function pwdLenghtValidation($pwd)
 return $responses;
 }
 
+function ProductExist(string $name) {
+    $responses = [
+        'exist' => false,
+        'msg' => 'Ce Produit est inexistant'
+    ];
+
+    $userInDB = getProductByName($name);
+    if($userInDB) {
+        $responses = [
+            'exist' => true,
+            'msg' => ''
+        ];
+    }
+    return $responses;
+}
 
 
-//TODO: faire une class css: error qui  met les messages d'erreurs en rouges
+
 
 ?>
