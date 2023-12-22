@@ -1,14 +1,13 @@
 <?php
 session_start();
-require_once("../Configuration/connexion.php");
 require_once("../functions/functions.php");
 require_once("../functions/userCrud.php");
 require_once("../functions/validation.php");
-var_dump($_POST);
+require_once("../functions/userCrud.php");
 $user = $_POST['user_name'];
-$pwd_user = $_POST['pwd'];
+$userName = UserNameExist($user);
 
-if (isset($_POST)){
+if (isset($_POST)){ //WORKS
 
     unset($_SESSION['del_errors']);
 
@@ -19,10 +18,16 @@ if (isset($_POST)){
     }else{
         $user_name = $_SESSION['user_name'];
         $pwd = $_SESSION['pwd'];
+        $pwd_user = $_POST['pwd'];
+        $userInDB = getUserByUsername($user);
 
-        if($user != $user_name) {
-            $_SESSION['del_errors'] = ['user_name' => 'les User_name ne sont pas les meme'];
-        }if($pwd_user != $pwd) {
+        if($userName['exist'] == false) {
+            $_SESSION['del_errors'] = ['user_name' => 'Ce username n\'existe pas'];
+            exit();
+        }
+        elseif($user != $user_name) {
+            $_SESSION['del_errors'] = ['user_name' => 'les User_name ne sont pas les meme/ Vous n\'etes pas autoriser'];
+        }elseif($pwd_user != $pwd) {
             $_SESSION['del_errors'] = ['pwd' => 'les passwords ne sont pas les meme'];
         }else{
             $DeleteUser = deleteUser($user);

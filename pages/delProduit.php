@@ -25,7 +25,7 @@
             <a class="nav-link active" aria-current="page" href="../pages/ecom.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="">Modifier un Produit</a>
+            <a class="nav-link active" aria-current="page" href="./updateProduit.php">Modifier un Produit</a>
           </li>
         </ul>
     </div>

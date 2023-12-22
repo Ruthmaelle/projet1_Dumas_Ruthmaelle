@@ -40,6 +40,21 @@ function usernameIsValid(string $user_name): array
 return $responses;
 }
 
+function UserNameExist($user_name){
+    $userInDB = getUserByUsername($user_name);
+    $responses =[
+        'exist' => false,
+        'message' =>'User inexistant'
+    ];
+    if($userInDB){
+        $responses=[
+            'exist' => true,
+            'message' => ''
+        ];
+    }
+    return $responses;
+}
+
 
 function fnameIsValid($fname) {
     $length= strlen($fname);
@@ -143,13 +158,14 @@ function pwdLenghtValidation($pwd)
 return $responses;
 }
 
-function ProductExist(string $name) {
+function ProductExist($name) {
     $responses = [
         'exist' => false,
         'msg' => 'Ce Produit est inexistant'
     ];
 
     $userInDB = getProductByName($name);
+    
     if($userInDB) {
         $responses = [
             'exist' => true,
@@ -158,8 +174,6 @@ function ProductExist(string $name) {
     }
     return $responses;
 }
-
-
 
 
 ?>

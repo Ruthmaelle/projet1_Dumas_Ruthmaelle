@@ -4,7 +4,7 @@ require_once("../functions/userCrud.php");
 require_once("../functions/validation.php");
 
 $id = $_POST['name'];
-//$Exist = true;
+
 
 if(isset($_POST)) {
     unset($_SESSION['supp_errors']);

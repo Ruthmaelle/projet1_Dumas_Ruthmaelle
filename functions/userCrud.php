@@ -73,6 +73,18 @@ function updateUser(array $data) {
     }
 }
 
+function afficherUser(){
+    global $conn;
+
+    $query = "SELECT * FROM user";
+    $result = mysqli_query($conn, $query);
+
+     // Fetch user data
+    $utilisateurs = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    return $utilisateurs;
+}
+
 function getUserByMail(string $email){
     global $conn;
 
@@ -97,10 +109,9 @@ function addProducts(array $data) { //seul un superadmin peut ajouter des produi
             $data['name'],
             $data['quantity'],
             $data['price'],
-            $data['long_url'],
+            $data['img_url'],
             $data['description']
         );
-
         $result = mysqli_stmt_execute($stmt);
     }
 
@@ -112,10 +123,20 @@ function afficherProduit(){
 
     $query = "SELECT * FROM product ORDER BY id DESC ";
     $result = mysqli_query($conn, $query);
-     //avec fecth row : tableau indexe
-    $data = mysqli_fetch_assoc($result);
 
-    return $data;
+    // Initialize an empty array to store products
+    $products = array();
+
+    //avec fecth row : tableau indexe,
+    // Fetch each row and add it to the array
+    while ($row = mysqli_fetch_assoc($result)) {
+        $products[] = $row;
+    }
+
+    return $products;
+    //$data = mysqli_fetch_assoc($result);
+
+    //return $data;
 
 }
 
@@ -133,7 +154,7 @@ function deleteProduit(string $name) {
     return $result;
 }
 
-function getProductByName(string $name) {
+function getProductByName($name) {
     global $conn;
 
     $query = "SELECT * FROM product WHERE product.name = '" . $name . "';";
@@ -143,4 +164,66 @@ function getProductByName(string $name) {
     return $data;
 
 }
+
+function updateProduct(array $data) {
+    global $conn;
+
+    $query = "UPDATE product SET name = ?, quantity = ?, price = ?, img_url = ?, description = ? WHERE product.id = ?;";
+    if($stmt=mysqli_prepare($conn, $query)) {
+        mysqli_stmt_bind_param(
+            $stmt,
+            "sidssi",
+            $data['name'],
+            $data['quantity'],
+            $data['price'],
+            $data['img_url'],
+            $data['description'],
+            $data['id']
+        );
+        // execution de la requete 
+        $result = mysqli_stmt_execute($stmt);
+
+    }
+    return $result;
+}
+
+function afficherProduitSearch(string $name){
+    global $conn;
+
+    $query = "SELECT * FROM product WHERE name = '" . $name ."';";
+    
+    // Get the result
+    $result = mysqli_query($conn, $query);
+
+    // Fetch only the first row
+    $data = mysqli_fetch_assoc($result);
+
+    return $data;
+}
+
+
+
+function CreateAdress($data) {
+    global $conn;
+
+    $query = "INSERT INTO address VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+    if($stmt = mysqli_prepare($conn, $query)) {
+        mysqli_stmt_bind_param(
+            $stmt,
+            "sissss",
+            $data['street_name'],
+            $data['street_nb'],
+            $data['city'],
+            $data['province'],
+            $data['zip_code'],
+            $data['country']
+        );
+
+        $result = mysqli_stmt_execute($stmt);
+    }
+    return $result;
+}
+
+
+
 ?>

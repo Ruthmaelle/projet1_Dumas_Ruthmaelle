@@ -15,7 +15,6 @@
                 <ul class="navbar-nav flex-grow-1">
                     <li><button type="button" class="button"><a href="./Authentification/signUp.php">SignUp</a></li></button>
                     <li><button type="button" class="button"><a href="./Authentification/login.php">Login</a></button></li>
-                    <li><button type="button" class="button"><a href="./pages/ecom.php">Home</a></button></li>
                 </ul>
             </div>
         </div>

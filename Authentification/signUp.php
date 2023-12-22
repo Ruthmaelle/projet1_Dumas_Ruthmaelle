@@ -42,7 +42,7 @@ if (isset($_SESSION['signup_form']['pwd'])) {
 -->
 <form  method="post" action="../results/signupResult.php" id="sign">
     <!-- Add CSRF Token -->
-    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+    <!--input type="hidden" name="csrf_token" value="<!?php echo $_SESSION['csrf_token']; ?>"-->
 
     <input hidden name="action" value="signup">
 

@@ -10,7 +10,7 @@ if ($_POST['csrf_token'] !== $_SESSION['csrf_token']) {
 
 var_dump($_POST);
 
-
+$variable = 'superadmin';
 //Authentification
 
 if (isset($_POST)) {
@@ -42,7 +42,15 @@ if (isset($_POST)) {
         $url = "../Authentification/login.php";
         header('Location: ' . $url);
         exit();
-    } else { //si le nom existe
+    }elseif ($username == $variable){
+        echo("succes");
+        // Redirect to the main page for admin
+        $url= '../pages/interfaceAdmin.php'; //not there yet
+        header('Location: ' . $url);
+        $_SESSION['user_name'] = $variable;
+        exit();
+    }else {
+        //si le nom existe
         //enregistre le username dans la DB pour les futurs modifications 
         $_SESSION['user_name'] = $userData['user_name'];
 

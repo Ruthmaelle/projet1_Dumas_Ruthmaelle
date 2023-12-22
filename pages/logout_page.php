@@ -11,6 +11,12 @@
     <div class="container mt-5">
         <h1>You have been logged out</h1>
         <p>Thank you for using our site.</p>
+        <br> <br> <button type="button"><a href="../index.php">Page Principale</a></button>
+               
+        <!--?php
+        $url='../index.php';
+        header('location:'.$url);
+        ?>
         <!--a href="./">Go to Home</a-->
     </div>
 
