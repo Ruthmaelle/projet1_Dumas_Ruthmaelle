@@ -8,5 +8,4 @@ unset($_SESSION['user_name']); // replace 'user_id' with the actual session vari
 // Redirect the user to a page indicating they are logged out
 $url = "../pages/logout_page.php";
 header('Location: ' . $url);
-
 ?>

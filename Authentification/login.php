@@ -15,8 +15,6 @@ session_start();
 <body>
     <center><h2>Login</h2></center>
     <form method="post" action="../results/loginResults.php">
-        <!-- Add CSRF Token -->
-    <!--input type="hidden" name="csrf_token" value="<!-?php echo $_SESSION['csrf_token']; ?-->">
 
     <input hidden name="action" value="login">
 

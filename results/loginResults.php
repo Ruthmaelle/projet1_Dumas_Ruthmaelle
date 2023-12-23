@@ -74,7 +74,7 @@ if (isset($_POST)) {
                 if (mysqli_stmt_execute($stmt)){
                 echo("succes");
                 // Redirect to the main page
-                header('Location: ../pages/ecom.php'); //not there yet
+                header('Location: ../pages/ecom.php'); 
                 exit();
             } else{
                 $_SESSION['login_error'] = ("Erreurs dans l'execution: " . mysqli_error($conn));
@@ -99,25 +99,4 @@ if (isset($_POST)) {
     exit();
 }
 
-//si le username existe 
-/*if(isset($DataUser)) {
-    $encodedPWD = addSalt($_POST['pwd']);
-    if($DataUser['pwd'] == $encodedPWD) {
-        //creer un token pour l'utilisateur
-        $token = hash('sha256', random_bytes(32));
-        echo '</br></br>Mon token : </br>';
-        var_dump($token);
-        //enregistrer le token en Session et dans la DB
-        //photos
-
-        //traitement si mdp correct
-        $url = ""; //page principale
-        header('Location: ' . $url);
-        echo "Password correcte";
-    }else{
-        echo ("Password incorrecte");
-        
-    }
-}
-*/
 ?>

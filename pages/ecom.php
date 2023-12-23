@@ -10,6 +10,8 @@ require_once("../functions/userCrud.php");
 require_once("../functions/validation.php");
 $mesProduits=afficherProduit();
 
+
+
 ?>
 
 
@@ -180,10 +182,22 @@ if (isset($_POST)){
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <!-- Inside the foreach loop where you display products -->
-                                    <form method="post" action="./ecom.php?action=add&name=<?php echo $product['name']; ?>">
+                                    <!--form method="post" action="./ecom.php?action=add&name=<?php echo $product['name']; ?>">
                                       <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+                                    </form-->
+                                    <!-- Inside the foreach loop where you display products -->
+                                    <form onsubmit="addToCart('<?php echo $Recherche['name']; ?>', <?php echo $Recherche['price']; ?>, document.getElementById('quantity_<?php echo $Recherche['name']; ?>').value); return false;">
+                                      <div class="input-group">
+                                        <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+                                      </div>
+                                      <div>
+                                        <label for="quantity_" >Quantity</label>
+                                        <input type="number" id="quantity_<?php echo $Recherche['name']; ?>" class="form-control" value="1" min="1">
+                                      </div>
                                     </form>
-                                  </div>
+                                </div>
+                              </div>
+                            <div>
                                 <?php if (isset($product['price'])) { ?>
                                     <small class="text-body-secondary"><?php echo $product['price']; ?>$CAD</small>
                                 <?php } ?>
@@ -198,10 +212,12 @@ if (isset($_POST)){
 
         </form>
 
-<?php }
-var_dump($_POST);
+<?php }}
+if(isset($_SESSION['cart'])){
+  var_dump($_SESSION['cart']);
 }
-/*elseif (isset($_POST['action']) && $_POST['action'] == 'add') {
+
+elseif (isset($_POST['action']) && $_POST['action'] == 'add') {
   $product_name = isset($_GET['name']) ? htmlspecialchars($_GET['name']) : '' ;
 
   // Fetch the product information based on the product ID
@@ -212,11 +228,11 @@ var_dump($_POST);
   // Add the product to the shopping cart in the session
   $_SESSION['cart'][] = $product;
   echo '<pre>';
-  print_r($_SESSION['cart']);
+  echo($_SESSION['cart']);
   echo '</pre>';
   
 }
-*/
+
 
 ?>
 
@@ -256,14 +272,14 @@ var_dump($_POST);
 </div>
 </div>
 
+-->
 
 <footer class="container">
     <p class="float-end"><a href="#">Back to top</a></p>
-    <p class=""><a href="./gererProduit.php">Add Products</a></p>
     <p>&copy; 2017–2023 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
 </footer>
 
--->
+
 
 </main>
 

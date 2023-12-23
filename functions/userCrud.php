@@ -128,16 +128,11 @@ function afficherProduit(){
     $products = array();
 
     //avec fecth row : tableau indexe,
-    // Fetch each row and add it to the array
     while ($row = mysqli_fetch_assoc($result)) {
         $products[] = $row;
     }
 
     return $products;
-    //$data = mysqli_fetch_assoc($result);
-
-    //return $data;
-
 }
 
 function deleteProduit(string $name) {
@@ -203,7 +198,7 @@ function afficherProduitSearch(string $name){
 
 
 
-function CreateAdress($data) {
+function CreateAddress($data) {
     global $conn;
 
     $query = "INSERT INTO address VALUES (NULL, ?, ?, ?, ?, ?, ?)";
@@ -224,6 +219,17 @@ function CreateAdress($data) {
     return $result;
 }
 
+// Function to add a product to the cart
+function addToCart($name, $price, $quantity) {
+    // Retrieve product information based on the product name
+    $product = getProductByName($name);
 
+    // Add additional information to the product
+    $product['price'] = $price;
+    $product['quantity'] = $quantity;
+
+    // Add the product to the shopping cart in the session
+    $_SESSION['cart'][] = $product;
+}
 
 ?>
